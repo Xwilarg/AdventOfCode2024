@@ -15,4 +15,9 @@ l1 = [.. l1.Order()];
 l2 = [.. l2.Order()];
 
 var res = Enumerable.Range(0, l1.Count).Sum(i => Math.Abs(l1[i] - l2[i]));
+
 Console.WriteLine(res);
+
+var res2 = Enumerable.Range(0, l1.Count).Sum(i => l1[i] * l2.Count(x => x == l1[i]));
+
+Console.WriteLine(res2);
