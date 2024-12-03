@@ -1,3 +1,3 @@
 ﻿using AdventOfCode2024.Day;
 
-new Day02().Execute();
+new Day03().Execute();
