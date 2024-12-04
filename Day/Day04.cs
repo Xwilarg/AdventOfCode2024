@@ -9,7 +9,8 @@ namespace AdventOfCode2024.Day
         {
             var lines = File.ReadAllLines("data/day04.txt");
 
-            bool LookFor(int progX, int progY, int x, int y)
+
+            bool LookForXMas(int progX, int progY, int x, int y)
             {
                 string target = "XMAS";
 
@@ -25,7 +26,18 @@ namespace AdventOfCode2024.Day
                 return true;
             }
 
-            int count = 0;
+            bool HasMas(bool a, int x, int y)
+            {
+                if (lines[y][x] != 'A') return false;
+                if (x - 1 < 0 || y - 1 < 0 || y + 1 >= lines.Length || x + 1 >= lines[y].Length) return false;
+                var ms = "MS";
+
+                return ms.Contains(lines[y - 1][x - 1]) && ms.Contains(lines[y + 1][x + 1]) && lines[y - 1][x - 1] != lines[y + 1][x + 1]
+                    && ms.Contains(lines[y - 1][x + 1]) && ms.Contains(lines[y + 1][x - 1]) && lines[y - 1][x + 1] != lines[y + 1][x - 1];
+            }
+
+            int countXMas = 0;
+            int countMax = 0;
             for (int y = 0; y < lines.Length; y++)
             {
                 for (int x = 0; x < lines[y].Length; x++)
@@ -36,14 +48,17 @@ namespace AdventOfCode2024.Day
                         {
                             if (tx != 0 || ty != 0)
                             {
-                                if (LookFor(tx, ty, x, y)) count++;
+                                if (LookForXMas(tx, ty, x, y)) countXMas++;
                             }
                         }
                     }
+
+                    if (HasMas(true, x, y)) countMax++;
                 }
             }
 
-            Console.WriteLine(count);
+            Console.WriteLine(countXMas);
+            Console.WriteLine(countMax);
         }
     }
 }
