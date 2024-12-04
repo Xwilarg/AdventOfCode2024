@@ -26,7 +26,7 @@ namespace AdventOfCode2024.Day
                 return true;
             }
 
-            bool HasMas(bool a, int x, int y)
+            bool HasMas(int x, int y)
             {
                 if (lines[y][x] != 'A') return false;
                 if (x - 1 < 0 || y - 1 < 0 || y + 1 >= lines.Length || x + 1 >= lines[y].Length) return false;
@@ -53,7 +53,7 @@ namespace AdventOfCode2024.Day
                         }
                     }
 
-                    if (HasMas(true, x, y)) countMax++;
+                    if (HasMas(x, y)) countMax++;
                 }
             }
 
