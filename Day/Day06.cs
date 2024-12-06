@@ -45,7 +45,7 @@
 
                 i++;
                 if (IsOob(lines, player.X + directions[dirIndex].X, player.Y + directions[dirIndex].Y)) return false;
-                if (player.X == startPos.X && player.Y == startPos.Y && dirIndex == startIndex) return true;
+                // if (player.X == startPos.X && player.Y == startPos.Y && dirIndex == startIndex) return true;
                 if (i == lines.Length * lines[0].Length) return true; // My end detection if fucked so if we had time to visit everything we assume we are looping
             }
         }
@@ -95,7 +95,8 @@
                     walkCount++;
                 }
 
-                if (IsLooping(lines, player, dirIndex + 1, new Vector2() { X = player.X + directions[dirIndex].X, Y = player.Y + directions[dirIndex].Y })) paradoxCount++;
+                var obs = new Vector2() { X = player.X + directions[dirIndex].X, Y = player.Y + directions[dirIndex].Y };
+                if (IsLooping(lines, player, dirIndex + 1, obs)) paradoxCount++;
 
                 player.X += d.X;
                 player.Y += d.Y;
